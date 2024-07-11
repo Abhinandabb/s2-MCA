@@ -1,0 +1,227 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.19 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.08 sec)
+
+mysql> use sample;
+Database changed
+mysql> select * from demo;
++------+---------+------+
+| id   | name    | age  |
++------+---------+------+
+|    1 | arun    |   23 |
+|    2 | raji    |   45 |
+|    3 | ramu    |   30 |
+|    4 | aswin   |   25 |
+|    5 | rahul   |   31 |
+|    6 | vishnu  |   27 |
+|    7 | manu    |   35 |
+|    8 | karthik |   37 |
+|    9 | aswathi |   24 |
+|   10 | leena   |   25 |
++------+---------+------+
+10 rows in set (0.02 sec)
+
+mysql> alter table demo add coloumn dept_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dept_name' at line 1
+mysql> alter table demo add coloumn dept_name varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dept_name varchar(50)' at line 1
+mysql> alter table demo add coloumn deptname varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'deptname varchar(50)' at line 1
+mysql> alter table demo add coloumn dept varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dept varchar(50)' at line 1
+mysql> alter table demo add column dept varchar(50);
+Query OK, 0 rows affected (0.99 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update table demo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table demo' at line 1
+mysql> update demo set dept="mca" where id=1;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="btech" where id=2;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="btech" where id=3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="mtech" where id=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="mca" where id=5;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from demo;
++------+---------+------+-------+
+| id   | name    | age  | dept  |
++------+---------+------+-------+
+|    1 | arun    |   23 | mca   |
+|    2 | raji    |   45 | btech |
+|    3 | ramu    |   30 | btech |
+|    4 | aswin   |   25 | mtech |
+|    5 | rahul   |   31 | mca   |
+|    6 | vishnu  |   27 | NULL  |
+|    7 | manu    |   35 | NULL  |
+|    8 | karthik |   37 | NULL  |
+|    9 | aswathi |   24 | NULL  |
+|   10 | leena   |   25 | NULL  |
++------+---------+------+-------+
+10 rows in set (0.00 sec)
+
+mysql> update demo set dept="civil" where id=6;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="mech" where id=7;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="cse" where id=8;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="cse" where id=9;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update demo set dept="eee" where id=10;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from demo;
++------+---------+------+-------+
+| id   | name    | age  | dept  |
++------+---------+------+-------+
+|    1 | arun    |   23 | mca   |
+|    2 | raji    |   45 | btech |
+|    3 | ramu    |   30 | btech |
+|    4 | aswin   |   25 | mtech |
+|    5 | rahul   |   31 | mca   |
+|    6 | vishnu  |   27 | civil |
+|    7 | manu    |   35 | mech  |
+|    8 | karthik |   37 | cse   |
+|    9 | aswathi |   24 | cse   |
+|   10 | leena   |   25 | eee   |
++------+---------+------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * from table where id>=5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table where id>=5' at line 1
+mysql> select * from demo where id>=5;
++------+---------+------+-------+
+| id   | name    | age  | dept  |
++------+---------+------+-------+
+|    5 | rahul   |   31 | mca   |
+|    6 | vishnu  |   27 | civil |
+|    7 | manu    |   35 | mech  |
+|    8 | karthik |   37 | cse   |
+|    9 | aswathi |   24 | cse   |
+|   10 | leena   |   25 | eee   |
++------+---------+------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from demo where id<=5;
++------+-------+------+-------+
+| id   | name  | age  | dept  |
++------+-------+------+-------+
+|    1 | arun  |   23 | mca   |
+|    2 | raji  |   45 | btech |
+|    3 | ramu  |   30 | btech |
+|    4 | aswin |   25 | mtech |
+|    5 | rahul |   31 | mca   |
++------+-------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from demo where id>5;
++------+---------+------+-------+
+| id   | name    | age  | dept  |
++------+---------+------+-------+
+|    6 | vishnu  |   27 | civil |
+|    7 | manu    |   35 | mech  |
+|    8 | karthik |   37 | cse   |
+|    9 | aswathi |   24 | cse   |
+|   10 | leena   |   25 | eee   |
++------+---------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from demo where id<5;
++------+-------+------+-------+
+| id   | name  | age  | dept  |
++------+-------+------+-------+
+|    1 | arun  |   23 | mca   |
+|    2 | raji  |   45 | btech |
+|    3 | ramu  |   30 | btech |
+|    4 | aswin |   25 | mtech |
++------+-------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from demo where id>5 and id<10;
++------+---------+------+-------+
+| id   | name    | age  | dept  |
++------+---------+------+-------+
+|    6 | vishnu  |   27 | civil |
+|    7 | manu    |   35 | mech  |
+|    8 | karthik |   37 | cse   |
+|    9 | aswathi |   24 | cse   |
++------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from demo where id>7 and id<10;
++------+---------+------+------+
+| id   | name    | age  | dept |
++------+---------+------+------+
+|    8 | karthik |   37 | cse  |
+|    9 | aswathi |   24 | cse  |
++------+---------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> select name from demo where name like 'a%';
++---------+
+| name    |
++---------+
+| arun    |
+| aswin   |
+| aswathi |
++---------+
+3 rows in set (0.02 sec)
+
+mysql> select name from demo where name like '_a%';
++---------+
+| name    |
++---------+
+| raji    |
+| ramu    |
+| rahul   |
+| manu    |
+| karthik |
++---------+
+5 rows in set (0.00 sec)
+
+mysql>
